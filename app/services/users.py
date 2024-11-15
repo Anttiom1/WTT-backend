@@ -12,7 +12,7 @@ class UsersService:
         self.db = db
 
     # Haetaan käyttäjä id:n perusteella:
-    async def get_by_id(self, user_id: int) -> User:
+    def get_by_id(self, user_id: int) -> User:
         """"
         SELECT * FROM users WHERE id = {user_id}
         """
@@ -92,10 +92,10 @@ class UsersService:
               """
         return user
     
-    async def delete_user_by_id(self, user_id: int):
+    def delete_user_by_id(self, user_id: int):
         try:
-            # Haetaan asyncisti id:n perusteella poistettava käyttäjä
-            user = await self.get_by_id(user_id)
+            # Haetaan id:n perusteella poistettava käyttäjä
+            user = self.get_by_id(user_id)
 
             if user is None:
                 # Jos käyttäjää ei ole, palautetaan 404
